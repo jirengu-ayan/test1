@@ -2,24 +2,57 @@
 
 ## 教程
 
-- 当执行 `ls -al` 可设置别名简化输入：如
-  - `la`
-- 修改 `~/.bashrc` 加入
-  - `alias la='ls -al'`
+#### 取消变动的暂存
+
+`git reset HEAD <file>` 来取消暂存。
 
 
+
+#### 撤销对文件的修改
+
+`git checkout -- [file]` 用来撤销文件的i修改。
+
+
+
+#### 步骤：
+
+1. `touch a.md`
+
+2. `echo "ayan" > a.md`
+
+   `git status` a.md 未被追踪
+
+3. `git add a.md`
+
+   `git status ` a.md 被追踪
+
+4. `git reset HEAD a.md`
+
+5. `git checkut -- a.md`
+
+6. `cat a.md`
+
+   `git status` a.md 未被追踪
+
+   
 
 ## 我的做法
 
-1. 打开 `Git Bash` 并进入了 `vim ~/.bashrc` 文件
+我是用 Git Bash 按照步骤输入的，然后在第五步的时候出现了错误：
 
-2. 在这个文件中输入了 `alias la='ls -al'` 并用 `:wq` 退出了文件 
+```bash
+$ git checkout -- a.md
+error: pathspec 'a.md' did not match any file(s) known to git
+```
 
-3. 然后我输入了 `ls -al` 命令可以将目录下的信息显示出来，但是用 `la` 则出现了以下提示：
+这是为什么呢？
 
-   ```
-   bash: la: command not found
-   ```
+而且在过程中还遇到了下面这个错误：
 
-所以为什么没有找到这个 `la` 命令呢？是我漏掉了哪一步骤吗？
+```bash
+$ git reset HEAD a.md
+fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+```
 
